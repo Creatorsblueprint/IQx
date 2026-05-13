@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --gh-sidebar-bg: #0A1628;
+  --gh-accent: #C9A962;
+  --gh-accent-strong: #B8975A;
+  --gh-accent-soft: rgba(201,169,98,0.14);
+  --gh-accent-border: rgba(201,169,98,0.45);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #071120;
+  color: white;
+  margin: 0;
+  overflow-x: hidden;
+}
