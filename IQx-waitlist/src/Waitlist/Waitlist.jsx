@@ -48,7 +48,7 @@ const IntroContent = ({ isMobileView, waitlistCount, navigateToForm, slideDirect
   const keywords = ["Intelligence", "Audits", "Reporting", "Workflows"];
 
   return (
-    <motion.section 
+    <motion.section
       className={isMobileView ? styles.mobileCard : styles.heroPanel}
       variants={isMobileView ? mobileSlideVariants : containerVariants}
       initial={isMobileView ? "enter" : "hidden"}
@@ -76,14 +76,6 @@ const IntroContent = ({ isMobileView, waitlistCount, navigateToForm, slideDirect
         Intelligence, audits, reporting, and workflows in one secure environment.
       </motion.p>
 
-      {/* Target Audience Badge - Shorter on mobile */}
-      <motion.div className={styles.targetBadge} variants={itemVariants}>
-        <span className={styles.targetPrefix}>For:</span> 
-        {isMobileView 
-          ? "operators, quality teams, and executives." 
-          : "operators, quality teams, and executives managing standards at scale."}
-      </motion.div>
-
       <motion.div className={styles.keywordRail} variants={itemVariants}>
         {keywords.map((word, i) => (
           isMobileView ? (
@@ -91,8 +83,8 @@ const IntroContent = ({ isMobileView, waitlistCount, navigateToForm, slideDirect
               {word}
             </span>
           ) : (
-            <motion.span 
-              key={i} 
+            <motion.span
+              key={i}
               className={styles.keywordPill}
               animate={{
                 y: [0, -2, 0],
@@ -132,8 +124,8 @@ const IntroContent = ({ isMobileView, waitlistCount, navigateToForm, slideDirect
 
       {isMobileView && (
         <motion.div className={styles.mobileCtaWrapper} variants={itemVariants}>
-          <button 
-            className={styles.mobilePrimaryButton} 
+          <button
+            className={styles.mobilePrimaryButton}
             onClick={navigateToForm}
             aria-label="Open request access form"
           >
@@ -152,12 +144,12 @@ const IntroContent = ({ isMobileView, waitlistCount, navigateToForm, slideDirect
   );
 };
 
-const FormContent = ({ 
-  isMobileView, 
-  slideDirection, 
-  navigateToIntro, 
-  submitted, 
-  handleSubmit, 
+const FormContent = ({
+  isMobileView,
+  slideDirection,
+  navigateToIntro,
+  submitted,
+  handleSubmit,
   fullName, setFullName,
   workEmail, setWorkEmail,
   companyName, setCompanyName,
@@ -167,7 +159,7 @@ const FormContent = ({
   qualityChallenge, setQualityChallenge,
   isFormValid, loading, message
 }) => (
-  <motion.section 
+  <motion.section
     className={isMobileView ? styles.mobileCard : styles.formPanel}
     variants={isMobileView ? mobileSlideVariants : undefined}
     initial={isMobileView ? "enter" : { x: -100, opacity: 0, zIndex: -1 }}
@@ -179,9 +171,9 @@ const FormContent = ({
   >
     <div className={isMobileView ? styles.mobileFormCard : styles.premiumCard}>
       {isMobileView && (
-        <button 
+        <button
           type="button"
-          className={styles.backButton} 
+          className={styles.backButton}
           onClick={navigateToIntro}
           aria-label="Back to overview"
         >
@@ -284,7 +276,7 @@ const Waitlist = () => {
   const [isValidNumberOfProperties, setIsValidNumberOfProperties] = useState(true);
   const [isValidQualityChallenge, setIsValidQualityChallenge] = useState(true);
 
-  const WAITLIST_ENDPOINT = import.meta.env.VITE_INTELEQX_WAITLIST_ENDPOINT || "http://localhost:3000/api/waitlist";
+  const WAITLIST_ENDPOINT = "https://iqxbackend-648711352735.europe-west3.run.app" || "http://localhost:3000/api/waitlist";
 
   useEffect(() => {
     const checkMobile = () => {
@@ -406,16 +398,16 @@ const Waitlist = () => {
       <main className={styles.contentGrid}>
         {!isMobile ? (
           <div className={styles.integratedPanel}>
-            <IntroContent 
-              isMobileView={false} 
-              waitlistCount={waitlistCount} 
-              navigateToForm={navigateToForm} 
-              slideDirection={slideDirection} 
+            <IntroContent
+              isMobileView={false}
+              waitlistCount={waitlistCount}
+              navigateToForm={navigateToForm}
+              slideDirection={slideDirection}
             />
-            <FormContent 
-              isMobileView={false} 
-              slideDirection={slideDirection} 
-              navigateToIntro={navigateToIntro} 
+            <FormContent
+              isMobileView={false}
+              slideDirection={slideDirection}
+              navigateToIntro={navigateToIntro}
               {...commonProps}
             />
           </div>
@@ -423,17 +415,17 @@ const Waitlist = () => {
           <div className={styles.mobileSliderContainer}>
             <AnimatePresence mode="wait" custom={slideDirection}>
               {mobileStep === "intro" ? (
-                <IntroContent 
-                  isMobileView={true} 
-                  waitlistCount={waitlistCount} 
-                  navigateToForm={navigateToForm} 
-                  slideDirection={slideDirection} 
+                <IntroContent
+                  isMobileView={true}
+                  waitlistCount={waitlistCount}
+                  navigateToForm={navigateToForm}
+                  slideDirection={slideDirection}
                 />
               ) : (
-                <FormContent 
-                  isMobileView={true} 
-                  slideDirection={slideDirection} 
-                  navigateToIntro={navigateToIntro} 
+                <FormContent
+                  isMobileView={true}
+                  slideDirection={slideDirection}
+                  navigateToIntro={navigateToIntro}
                   {...commonProps}
                 />
               )}
