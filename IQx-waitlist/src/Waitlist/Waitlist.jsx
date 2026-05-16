@@ -44,7 +44,7 @@ const mobileSlideVariants = {
 
 // --- Helper Components Moved Outside to Prevent Re-creation on Render ---
 
-const IntroContent = ({ isMobileView, waitlistCount, navigateToForm, slideDirection }) => {
+const IntroContent = ({ isMobileView, navigateToForm, slideDirection }) => {
   const keywords = ["Intelligence", "Audits", "Reporting", "Workflows"];
 
   return (
@@ -60,10 +60,6 @@ const IntroContent = ({ isMobileView, waitlistCount, navigateToForm, slideDirect
       <motion.header className={styles.header} variants={itemVariants}>
         <div className={styles.brandLockup}>
           <img src="/Images/icons/iqx_logo_white.png" alt="InteleQX" className={styles.brandLogo} />
-        </div>
-        <div className={styles.statusBadge}>
-          <span className={styles.livePulse}></span>
-          <span className={styles.waitlistCount}>{waitlistCount.toLocaleString()}+ joined</span>
         </div>
         <div className={styles.brandStatement}>
           <p className={styles.brandStatementTitle}>Quality | Performance | Intelligence</p>
@@ -237,7 +233,6 @@ const Waitlist = () => {
   const [submitted, setSubmitted] = useState(false);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [waitlistCount, setWaitlistCount] = useState(284);
 
   // Validation States
   const [isValidFullName, setIsValidFullName] = useState(false);
@@ -262,11 +257,6 @@ const Waitlist = () => {
     if (window.fbq) {
       window.fbq("track", "PageView");
     }
-
-    const interval = setInterval(() => {
-      setWaitlistCount(prev => prev + (Math.random() > 0.85 ? 1 : 0));
-    }, 12000);
-    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -372,7 +362,6 @@ const Waitlist = () => {
           <div className={styles.integratedPanel}>
             <IntroContent
               isMobileView={false}
-              waitlistCount={waitlistCount}
               navigateToForm={navigateToForm}
               slideDirection={slideDirection}
             />
@@ -389,7 +378,6 @@ const Waitlist = () => {
               {mobileStep === "intro" ? (
                 <IntroContent
                   isMobileView={true}
-                  waitlistCount={waitlistCount}
                   navigateToForm={navigateToForm}
                   slideDirection={slideDirection}
                 />
