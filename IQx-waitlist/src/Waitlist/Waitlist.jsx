@@ -65,43 +65,19 @@ const IntroContent = ({ isMobileView, waitlistCount, navigateToForm, slideDirect
           <span className={styles.livePulse}></span>
           <span className={styles.waitlistCount}>{waitlistCount.toLocaleString()}+ joined</span>
         </div>
-        <span className={styles.eyebrow}>WAITLIST NOW OPEN</span>
+        <div className={styles.brandStatement}>
+          <p className={styles.brandStatementTitle}>Quality | Performance | Intelligence</p>
+        </div>
       </motion.header>
 
       <motion.h1 className={styles.title} variants={itemVariants}>
-        Access the InteleQX Portal
+        The hospitality quality <span className={styles.goldText}>intelligence</span> platform.
       </motion.h1>
 
       <motion.p className={styles.heroCopy} variants={itemVariants}>
         Intelligence, audits, reporting, and workflows in one secure environment.
       </motion.p>
 
-      <motion.div className={styles.keywordRail} variants={itemVariants}>
-        {keywords.map((word, i) => (
-          isMobileView ? (
-            <span key={i} className={styles.keywordPill}>
-              {word}
-            </span>
-          ) : (
-            <motion.span
-              key={i}
-              className={styles.keywordPill}
-              animate={{
-                y: [0, -2, 0],
-                opacity: [0.88, 1, 0.88]
-              }}
-              transition={{
-                duration: 7,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: i * 0.45
-              }}
-            >
-              {word}
-            </motion.span>
-          )
-        ))}
-      </motion.div>
 
       {!isMobileView && (
         <div className={styles.moduleSection}>
@@ -135,11 +111,6 @@ const IntroContent = ({ isMobileView, waitlistCount, navigateToForm, slideDirect
         </motion.div>
       )}
 
-      {!isMobileView && (
-        <motion.div className={styles.brandStatement} variants={itemVariants}>
-          <p className={styles.brandStatementTitle}>Quality | Performance | Intelligence</p>
-        </motion.div>
-      )}
     </motion.section>
   );
 };
@@ -222,8 +193,8 @@ const FormContent = ({
                 </select>
               </div>
               <div className={`${styles.field} ${styles.fullWidth}`}>
-                <label htmlFor="challenge" className={styles.label}>Challenge</label>
-                <textarea id="challenge" className={styles.textareaField} placeholder="What are you trying to solve?" value={qualityChallenge} onChange={(e) => setQualityChallenge(e.target.value)} rows="2"></textarea>
+                <label htmlFor="challenge" className={styles.label}>What quality challenge are you trying to solve?</label>
+                <textarea id="challenge" className={styles.textareaField} placeholder="Type here..." value={qualityChallenge} onChange={(e) => setQualityChallenge(e.target.value)} rows="2"></textarea>
               </div>
             </div>
             <button type="submit" className={styles.submitButton} disabled={!isFormValid || loading}>{loading ? "Submitting..." : "Request access"}</button>
@@ -276,7 +247,7 @@ const Waitlist = () => {
   const [isValidNumberOfProperties, setIsValidNumberOfProperties] = useState(true);
   const [isValidQualityChallenge, setIsValidQualityChallenge] = useState(true);
 
-  const WAITLIST_ENDPOINT = "https://iqxbackend-648711352735.europe-west3.run.app" || "http://localhost:3000/api/waitlist";
+  const WAITLIST_ENDPOINT = "https://iqxbackend-648711352735.europe-west3.run.app";
 
   useEffect(() => {
     const checkMobile = () => {
@@ -329,7 +300,7 @@ const Waitlist = () => {
     setLoading(true);
     try {
       const payload = { fullName, workEmail, companyName, role, numberOfProperties: numberOfProperties ? Number(numberOfProperties) : null, mainAreaOfInterest, qualityChallenge };
-      const res = await fetch(WAITLIST_ENDPOINT, {
+      const res = await fetch("https://iqxbackend-648711352735.europe-west3.run.app/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -393,6 +364,7 @@ const Waitlist = () => {
         <div className={`${styles.orb} ${styles.orbOne}`}></div>
         <div className={`${styles.orb} ${styles.orbTwo}`}></div>
         <div className={styles.gridOverlay}></div>
+        <div className={styles.movingLight}></div>
       </div>
 
       <main className={styles.contentGrid}>
